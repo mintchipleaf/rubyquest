@@ -1,0 +1,40 @@
+<table width="100%">
+    <tr>
+        <td>
+            <span class="text">
+                {%- if include.page.quotes -%}
+                <details class="quote">
+                    <summary>
+                        <span class="opener">
+                            >> <span class="quoted-marks">" "</span>
+                        </span>
+                    </summary>
+                {% for quote in include.page.quotes %}
+                    <div>
+                        <q>{{ quote }}</q>
+                    </div>
+                {% endfor %}
+                </details>
+                {%- endif -%}
+                {% for line in include.page.lines %}
+
+                {%- if line.command -%}
+                    <div class="command">
+                       {{ line.command }}
+                    </div>
+                {%- endif -%}
+
+                {%- if line.text -%}
+                {{ line.text }}
+                {%- endif -%}
+
+                {% endfor %}
+            </span>
+        </td>
+        <td align="right">
+            <a href="scene-002.html">
+                <img src="/assets/images/{{ include.page.image}}.gif" class="image"/>
+            </a>
+        </td>
+    </tr>
+</table>

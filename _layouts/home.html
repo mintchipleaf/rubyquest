@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<body>
+    {% for panel in site.panels %}
+        {% include panel.html page=panel %}
+    {% endfor %}
+</body>

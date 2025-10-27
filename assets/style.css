@@ -1,0 +1,82 @@
+body {
+	color: white;
+	background-color: black;
+}
+details > summary {
+	font-style: normal;
+    list-style-type: '>> \" \"';
+}
+
+details[open] > summary {
+    list-style-type: '\2228';
+}
+details > summary {
+	padding: 2px 6px;
+	width: fit-content;
+	display: inline-block;
+	padding: ;
+	border: none;
+	cursor: pointer;
+}
+.opener:hover {
+	border-radius: 5px;
+	background-color: rgb(45, 45, 45);
+}
+
+details > div {
+	width: fit-content;
+	display: inline-block;
+	padding: 2px 6px;
+	margin: 0;
+}
+
+.text {
+	font-family: serif;
+	font-size: 1.8em;
+}
+.command {
+	font-style: italic;
+	color: green;
+}
+.command:before {
+	font-style: normal;
+    content: "\276F";
+    margin-right: 6px;
+}
+.quote {
+	quotes: none;
+	font-style: italic;
+    margin-bottom: 2.5em;
+	color: LightGreen;
+	font-family: sans-serif;
+	font-size: 0.5em;
+}
+.special-text {
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 1.2em;
+	color: yellow;
+}
+.image {
+	border: solid thin;
+}
+.caption {
+	color: red;
+}
+.credit {
+	font-size: 3.0em;
+}
+.name {
+	font-size: 6.0em;
+}
+.credits-arrow {
+	font-size: 3.0em;
+	font-weight: bold;
+	text-align: center;
+}
+.option {
+	font-weight: bold;
+}
+.optiontext {
+	margin-left: 1cm;
+}
