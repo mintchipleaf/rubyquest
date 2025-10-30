@@ -41,7 +41,6 @@ details > div {
 .command:before {
 	font-style: normal;
     content: "\276F";
-    margin-right: 6px;
 }
 .quote {
 	quotes: none;

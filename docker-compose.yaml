@@ -4,6 +4,13 @@ services:
   jekyll:
     image: bretfisher/jekyll-serve
     volumes:
-      - .:/site
+      - type: volume
+        source: cifs-volume
+        target: /site
+        volume:
+          subpath: Dev/Sites/rubyquest/jekyll
     ports:
       - '4000:4000'
+
+volumes:
+  cifs-volume:

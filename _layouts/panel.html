@@ -1,14 +1,6 @@
-<table width="100%">
-    <tr>
-        <td>
-            <span class="text">
-                {{ content }}
-            </span>
-        </td>
-        <td align="right">
-            <a href="scene-002.html">
-                <img src="/images/{{page.image}}.gif" class="image"/>
-            </a>
-        </td>
-    </tr>
-</table>
+---
+layout: default
+---
+<body>
+    {% include panel.html page=page %}
+</body>

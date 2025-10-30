@@ -2,7 +2,7 @@
     <tr>
         <td>
             <span class="text">
-                {%- if include.page.quotes -%}
+                {%- if include.page.quotes and include.storyboard -%}
                 <details class="quote">
                     <summary>
                         <span class="opener">
@@ -16,6 +16,7 @@
                 {% endfor %}
                 </details>
                 {%- endif -%}
+
                 {% for line in include.page.lines %}
 
                 {%- if line.command -%}
@@ -32,7 +33,7 @@
             </span>
         </td>
         <td align="right">
-            <a href="scene-002.html">
+            <a href="">
                 <img src="/assets/images/{{ include.page.image}}.gif" class="image"/>
             </a>
         </td>
