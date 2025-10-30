@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from bs4 import NavigableString
 from pathlib import Path
 
+
 # Input HTML File Path
 inputpath = "\\og.html"
 # Output Files` Path
@@ -11,8 +12,8 @@ with open(inputpath) as fp:
     soup = BeautifulSoup(fp, 'html.parser')
 
 nl = "\n"
-textopen = "text: "
-commopen = "command: "
+textopen = "text: >-{}            ".format(nl)
+commopen = "command: >-{}            ".format(nl)
 
 linecount = 0
 weaverpostcount = 0
@@ -57,7 +58,7 @@ for text in soup.find_all('tr'):
                     prefix = "  "
                 lines.append("    {}{}".format(prefix, first))
                 linenumber += 1
-            lines[linenumber - 1] += text.replace(":", "&#58;")
+            lines[linenumber - 1] += text
         #end addtext
 
         def parseline(tag):
