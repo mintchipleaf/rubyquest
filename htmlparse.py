@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 # Input HTML File Path
-inputpath = "\\og.html"
+inputpath = "input\\input.html"
 # Output Files` Path
 outputpath = "output\\{}.md"
 
@@ -18,7 +18,7 @@ commopen = "command: >-{}            ".format(nl)
 linecount = 0
 weaverpostcount = 0
 for text in soup.find_all('tr'):
-    output = "" 
+    output = ""
     quotes = []
     commands = []
     texts = []
@@ -32,10 +32,9 @@ for text in soup.find_all('tr'):
     imgsrc = text.find('img').get('src').rsplit('/', 1)[-1]
     imgsrc = Path(imgsrc).stem
 
-    output += "image: {}{}".format(imgsrc, nl)
-
-    # weaverpost = 'icon' in imgsrc or 'ruby' in imgsrc or 'sruby' in imgsrc
     weaverpost = imgsrc == 'ruby' or imgsrc == 'sruby' or imgsrc == 'icon'
+
+    output += "image: {}{}".format(imgsrc, nl)
 
     def separatecomms(block):
         lines = []
@@ -71,7 +70,7 @@ for text in soup.find_all('tr'):
                 addtext(str(tag), textopen)
                 taginline += 1
             # Non-string tag
-            elif tag.name=='div' and tag.string:
+            elif tag.name=='font' and tag.string:
                     taginline = 1
                     lineinentry = 1
 

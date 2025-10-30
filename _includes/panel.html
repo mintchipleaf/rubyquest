@@ -47,7 +47,16 @@
             </span>
         </td>
         <td align="right">
-            <a href="">
+            {%- assign nextpageurl = _collection/{{nextpage}}.md -%}
+            {% for panel in panels %}
+                {% if panel.title == include.page.title - 1%}
+                    {% assign prev = item %}
+                {% endif %}
+                {% if panel.title == include.page.title + 1 %}
+                    {% assign next = item %}
+                {% endif %}
+            {% endfor %}
+            <a href="{{ next.url }}">
                 <img src="/assets/images/{{ include.page.image}}.gif" class="image"/>
             </a>
         </td>
