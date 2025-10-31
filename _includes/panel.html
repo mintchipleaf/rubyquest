@@ -47,9 +47,13 @@
     </div>
     </div>
     <div class="panel right">
+        {%- if include.storyboard -%}
+        <img class="image" src="{{ include.page.image | prepend: site.imgpath | append: '.gif' | relative_url }}">
+        {%- else -%}
         <a href="{{ include.page.nextpost relative_url }}">
-            <img src="/assets/images/{{ include.page.image}}.gif" class="image"/>
+        <img class="image" src="{{ include.page.image | prepend: site.imgpath | append: '.gif' | relative_url }}">
         </a>
+        {%- endif -%}
         {%- if include.panelview -%}
         <div class="navlinks">
             {%- if include.page.prevpost -%}
