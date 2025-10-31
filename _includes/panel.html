@@ -1,64 +1,70 @@
-<table width="100%">
-    <tr>
-        <td>
-            <span class="text">
-                {%- if include.page.quotes and include.storyboard -%}
-                <details class="quote">
-                    <summary>
-                        <span class="opener">
-                            >> <span class="quoted-marks">" "</span>
-                        </span>
-                    </summary>
-                    {%- if include.page.quotes -%}
-                    <div>
-                        <q>
-                            {% for quote in include.page.quotes %}
+<div class="container" width="100%">
 
-                            {%- if quote.command -%}
-                            <div class="command">
-                                {{ quote.command }}
-                            </div>
-                            {%- endif -%}
+    <div class="text{% if include.storyboard %}-storyboard{% endif %} left">
+        <div class="textcontainer">
+            {%- if include.page.quotes and include.storyboard -%}
+            <details class="quote">
+                <summary>
+                    <span class="opener">
+                        >> <span class="quoted-marks">" "</span>
+                    </span>
+                </summary>
+                {%- if include.page.quotes -%}
+                <div>
+                    <q>
+                        {% for quote in include.page.quotes %}
 
-                            {%- if quote.text -%}
-                                {{ quote.text }}
-                            {%- endif -%}
+                        {%- if quote.command -%}
+                        <div class="command">
+                            {{ quote.command }}
+                        </div>
+                        {%- endif -%}
 
-                            {% endfor %}
-                        </q>
-                    </div>
-                    {%- endif -%}
-                </details>
+                        {%- if quote.text -%}
+                            {{ quote.text }}
+                        {%- endif -%}
+
+                        {% endfor %}
+                    </q>
+                </div>
                 {%- endif -%}
+            </details>
+            {%- endif -%}
 
-                {% for line in include.page.lines %}
+            {% for line in include.page.lines %}
 
-                {%- if line.command -%}
-                    <div class="command">
-                       {{ line.command }}
-                    </div>
-                {%- endif -%}
+            {%- if line.command -%}
+                <div class="command">
+                    {{ line.command }}
+                </div>
+            {%- endif -%}
 
-                {%- if line.text -%}
-                {{ line.text }}
-                {%- endif -%}
+            {%- if line.text -%}
+            {{ line.text }}
+            {%- endif -%}
 
-                {% endfor %}
-            </span>
-        </td>
-        <td align="right">
-            {%- assign nextpageurl = _collection/{{nextpage}}.md -%}
-            {% for panel in panels %}
-                {% if panel.title == include.page.title - 1%}
-                    {% assign prev = item %}
-                {% endif %}
-                {% if panel.title == include.page.title + 1 %}
-                    {% assign next = item %}
-                {% endif %}
             {% endfor %}
-            <a href="{{ next.url }}">
-                <img src="/assets/images/{{ include.page.image}}.gif" class="image"/>
-            </a>
-        </td>
-    </tr>
-</table>
+    </div>
+    </div>
+    <div class="panel right">
+        <a href="{{ include.page.nextpost relative_url }}">
+            <img src="/assets/images/{{ include.page.image}}.gif" class="image"/>
+        </a>
+        {%- if include.panelview -%}
+        <div class="navlinks">
+            {%- if include.page.prevpost -%}
+            <div class="left">
+                <a class="left" href="{{ site.firstpanel relative_url }}">&#8804;</a>
+                <a class="left" href="{{ include.page.prevpost relative_url }}">&#60;</a>
+            </div>
+            {%- endif -%}
+            {%- if include.page.nextpost -%}
+            <div class="right">
+                <a class="right" href="{{ include.page.nextpost relative_url }}">&#62;</a>
+                <a class="right" href="{{ 866 relative_url }}">&#8805;</a>
+            </div>
+            {%- endif -%}
+        </div>
+        {%- endif -%}
+    </div>
+</div>

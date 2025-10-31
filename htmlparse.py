@@ -6,7 +6,7 @@ from pathlib import Path
 # Input HTML File Path
 inputpath = "input\\input.html"
 # Output Files` Path
-outputpath = "output\\{}.md"
+outputpath = "_panels\\{}.md"
 
 with open(inputpath) as fp:
     soup = BeautifulSoup(fp, 'html.parser')
@@ -15,7 +15,9 @@ nl = "\n"
 textopen = "text: >-{}            ".format(nl)
 commopen = "command: >-{}            ".format(nl)
 
-linecount = 0
+maxpost = 866
+
+postcount = 0
 weaverpostcount = 0
 for text in soup.find_all('tr'):
     output = ""
@@ -23,8 +25,8 @@ for text in soup.find_all('tr'):
     commands = []
     texts = []
 
-    linecount += 1
-    postnum = str(linecount).rjust(3, '0')
+    postcount += 1
+    posttitle = str(postcount).rjust(3, '0')
 
     # ---
     output += "---{}layout: panel{}".format(nl, nl)
@@ -32,9 +34,15 @@ for text in soup.find_all('tr'):
     imgsrc = text.find('img').get('src').rsplit('/', 1)[-1]
     imgsrc = Path(imgsrc).stem
 
-    weaverpost = imgsrc == 'ruby' or imgsrc == 'sruby' or imgsrc == 'icon'
+    weaverpost = 'ruby' in imgsrc or 'sruby' in imgsrc or 'icon' in imgsrc
 
     output += "image: {}{}".format(imgsrc, nl)
+
+    if not weaverpost:
+        if postcount != 1:
+            output += "prevpost: \"{}\"{}".format(str(postcount - 1).rjust(3, '0'), nl)
+        if postcount != maxpost:
+            output += "nextpost: \"{}\"{}".format(str(postcount + 1).rjust(3, '0'), nl)
 
     def separatecomms(block):
         lines = []
@@ -120,14 +128,14 @@ for text in soup.find_all('tr'):
     # Weaver post
     if weaverpost:
         weaverpostcount += 1
-        postnum += "-" + str(weaverpostcount)
-        linecount -= 1
+        posttitle += "-" + str(weaverpostcount)
+        postcount -= 1
     else:
         weaverpostcount = 0
 
-    filename = str(postnum)
+    filename = str(posttitle)
     with open(outputpath.format(filename), "w") as file:
         file.seek(0)
         file.write(str(output))
         file.truncate()
-print(linecount)
+print(postcount)

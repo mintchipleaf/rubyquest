@@ -14,7 +14,6 @@ details > summary {
 	padding: 2px 6px;
 	width: fit-content;
 	display: inline-block;
-	padding: ;
 	border: none;
 	cursor: pointer;
 }
@@ -30,9 +29,49 @@ details > div {
 	margin: 0;
 }
 
+.container {
+	width: 100%;
+	padding-bottom: 10px;
+
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap-reverse;
+}
 .text {
+	width: 50%;
 	font-family: serif;
 	font-size: 1.8em;
+
+	vertical-align: middle;
+	display: flex;
+	justify-content: space-evenly;
+}
+.text-storyboard {
+	width: 50%;
+	font-family: serif;
+	font-size: 1.8em;
+
+	vertical-align: middle;
+	display: flex;
+	justify-content: space-between;
+}
+@media (max-width: 1437px) {
+	.container {
+		justify-content: space-around;
+	}
+	.text {
+		width: 100%;
+		justify-content: left;
+	}
+	.text-storyboard {
+		width: 100%;
+		justify-content: left;
+		padding-bottom: 80px;
+	}
+}
+.textcontainer {
+	width: fit-content;
 }
 .command {
 	font-style: italic;
@@ -57,7 +96,7 @@ details > div {
 	color: yellow;
 }
 .image {
-	border: solid thin;
+	border: solid thin darkgray;
 }
 .caption {
 	color: red;
@@ -79,3 +118,14 @@ details > div {
 .optiontext {
 	margin-left: 1cm;
 }
+.imageside {
+	width: fit-content;
+}
+.navlinks {
+	width: 100%;
+	font-size: 1.5em;
+}
+.navlinks a {
+	text-decoration: none;
+}
+
