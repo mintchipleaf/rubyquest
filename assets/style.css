@@ -71,9 +71,13 @@ details > div {
 .textcontainer {
 	width: fit-content;
 }
+.linebreak {
+	height: 0.8em;
+}
 .command {
 	font-style: italic;
 	color: green;
+	margin-bottom: 0.5em;
 }
 .command:before {
 	font-style: normal;
@@ -82,7 +86,7 @@ details > div {
 .quote {
 	quotes: none;
 	font-style: italic;
-    margin-bottom: 2.5em;
+    margin-bottom: 1.5em;
 	color: LightGreen;
 	font-family: sans-serif;
 	font-size: 0.5em;

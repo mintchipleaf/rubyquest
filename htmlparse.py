@@ -70,16 +70,22 @@ for text in soup.find_all('tr'):
         def parsetag(tag):
             nonlocal taginline
             nonlocal lineinentry
+            middlebr = False
 
             # Strip <br> tags coming before or after text block
             if tag.name == 'br':
                 if not isinstance(tag.previous_sibling, NavigableString):
+                    # tag.decompose()
                     return
                 if not tag.next_sibling:
+                    # tag.decompose()
                     return
+                middlebr = taginline > 1
+                tag.name = 'div'
+                tag['class'] = 'linebreak'
+                tag.append("")
 
             # Text tag
-            middlebr = tag.name=='br' and taginline > 1
             if isinstance(tag, NavigableString) or middlebr:
                 addtext(str(tag), textopen)
                 taginline += 1
@@ -132,6 +138,7 @@ for text in soup.find_all('tr'):
     # ---
     output += "---"
 
+    # Weaver post
     if weaverpost:
         weaverpostcount += 1
         posttitle += "-" + str(weaverpostcount)
