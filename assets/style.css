@@ -1,6 +1,14 @@
+html {
+	height: 99%;
+}
 body {
+	height: 100%;
 	color: white;
 	background-color: black;
+
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
 }
 details > summary {
 	font-style: normal;
@@ -32,14 +40,17 @@ details > div {
 .container {
 	width: 100%;
 	padding-bottom: 10px;
+	/* height: 95%; */
 
 	display: inline-flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap-reverse;
+    flex-direction: row;
 }
 .text {
-	width: 50%;
+	max-width: 50%;
+    min-width: 0%;
 	font-family: serif;
 	font-size: 1.8em;
 
@@ -48,27 +59,14 @@ details > div {
 	justify-content: space-evenly;
 }
 .text-storyboard {
-	width: 50%;
+	max-width: 50%;
+    min-width: 0%;
 	font-family: serif;
 	font-size: 1.8em;
 
 	vertical-align: middle;
 	display: flex;
 	justify-content: space-between;
-}
-@media (max-width: 1437px) {
-	.container {
-		justify-content: space-around;
-	}
-	.text {
-		width: 100%;
-		justify-content: left;
-	}
-	.text-storyboard {
-		width: 100%;
-		justify-content: left;
-		padding-bottom: 80px;
-	}
 }
 .textcontainer {
 	width: fit-content;
@@ -96,7 +94,9 @@ details > div {
 	color: yellow;
 }
 .panel {
-	width: 701px;
+	/* width: 701px; */
+	width: min-content;
+	/* height: 100%; */
 }
 .image {
 	border: solid thin darkgray;
@@ -140,3 +140,26 @@ details > div {
 	text-decoration: none;
 }
 
+/* Phones etc */
+@media (max-width: 1437px) {
+	.container {
+		justify-content: space-around;
+	}
+	.text {
+		max-width: 100%;
+		min-width: 100%;
+		justify-content: left;
+	}
+	.text-storyboard {
+		max-width: 100%;
+		min-width: 100%;
+		justify-content: left;
+		padding-bottom: 80px;
+	}
+	.panel {
+		width: 100%;
+	}
+	.image {
+		width: 100%;
+	}
+}
