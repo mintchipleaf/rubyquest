@@ -15,8 +15,7 @@ nl = "\n"
 textopen = "text: >-{}            ".format(nl)
 commopen = "command: >-{}            ".format(nl)
 
-maxpost = 866
-
+maxpost = 858
 postcount = 0
 weaverpostcount = 0
 for text in soup.find_all('tr'):
