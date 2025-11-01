@@ -77,7 +77,7 @@ details > div {
 .command {
 	font-style: italic;
 	color: green;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.2em;
 }
 .command:before {
 	font-style: normal;
