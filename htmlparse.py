@@ -12,8 +12,9 @@ with open(inputpath) as fp:
     soup = BeautifulSoup(fp, 'html.parser')
 
 nl = "\n"
-textopen = "text: >-{}            ".format(nl)
-commopen = "command: >-{}            ".format(nl)
+fulltabs = "            "
+textopen = "text: |-" + nl + fulltabs
+commopen = "command: |-" + nl + fulltabs
 
 maxpost = 858
 postcount = 0
@@ -62,46 +63,43 @@ for text in soup.find_all('tr'):
                     lines[linenumber - 1] += nl
                 if lineinentry > 1:
                     prefix = "  "
-                lines.append("    {}{}".format(prefix, first))
+                lines.append("  {}{}".format(prefix, first))
                 linenumber += 1
-            lines[linenumber - 1] += text
+            lines[linenumber - 1] += str(text)
         #end addtext
 
         def parsetag(tag):
             nonlocal taginline
             nonlocal lineinentry
-            middlebr = False
 
             # Strip <br> tags coming before or after text block
             if tag.name == 'br':
-                if not isinstance(tag.previous_sibling, NavigableString):
-                    # tag.decompose()
-                    return
-                if not tag.next_sibling:
-                    # tag.decompose()
-                    return
-                middlebr = taginline > 1
-                tag.name = 'div'
-                tag['class'] = 'linebreak'
-                tag.append("")
+                if taginline > 1 and tag.next_sibling:
+                    if isinstance(tag.next_sibling, NavigableString) or tag.next_sibling.name == 'span' or tag.next_sibling.name == 'a':
+                        addtext(nl + fulltabs , textopen)
+                    else:
+                        addtext(nl, textopen)
+                return
 
             # Text tag
-            if isinstance(tag, NavigableString) or middlebr:
+            if isinstance(tag, NavigableString):
                 addtext(str(tag), textopen)
                 taginline += 1
             # Non-string tag
-            elif tag.name=='font' and tag.string:
+            elif tag.name=='font':
                     taginline = 1
                     lineinentry = 1
+                    texttouse = tag.contents
 
+                    if tag.string:
+                        texttouse = tag.string.replace(">", "")
 
-                    addtext(tag.string.replace(">", ""), commopen)
+                    addtext(texttouse, commopen)
                     lineinentry += 1
             # Special
             else:
                 addtext(str(tag), textopen)
                 taginline += 1
-
         #end parsetag
 
         for tag in block.children:

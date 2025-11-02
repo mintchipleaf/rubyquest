@@ -1,53 +1,47 @@
 <div class="container" width="100%">
 
-    <div class="text{% if include.storyboard %}-storyboard{% endif %} left">
-        <div class="textcontainer">
+    <div class="textcontainer{% if include.storyboard %} storyboard{% endif %}">
+        <div class="textfloat">
             {%- if include.page.quotes and include.storyboard -%}
+            <!-- Quotes -->
             <details class="quote">
                 <summary>
-                    <span class="opener">
-                        >> <span class="quoted-marks">" "</span>
-                    </span>
                 </summary>
                 {%- if include.page.quotes -%}
                 <div>
                     <q>
                         {% for quote in include.page.quotes %}
-
                         {%- if quote.command -%}
-                        <div class="command">
-                            {{ quote.command }}
-                        </div>
+                        <!-- Quote Command -->
+                        <div class="command">{{ quote.command }}</div>
                         {%- endif -%}
-
                         {%- if quote.text -%}
-                            {{ quote.text }}
+                        <!-- Quote Text -->
+                        <div class="text">{{ quote.text }}</div>
                         {%- endif -%}
-
                         {% endfor %}
                     </q>
                 </div>
                 {%- endif -%}
             </details>
-            <div class="linebreak"></div>
             {%- endif -%}
 
             {% for line in include.page.lines %}
 
             {%- if line.command -%}
-                <div class="command">
-                    {{ line.command }}
-                </div>
+            <!-- Main Command -->
+            <div class="command">{{ line.command }}</div>
             {%- endif -%}
 
             {%- if line.text -%}
-            {{ line.text }}
+            <!-- Main Text -->
+            <div class="text">{{ line.text }}</div>
             {%- endif -%}
 
             {% endfor %}
+        </div>
     </div>
-    </div>
-    <div class="panel right">
+    <div class="panelcontainer">
         {%- if include.storyboard -%}
         <img class="image" src="{{ include.page.image | prepend: site.imgpath | append: '.gif' | relative_url }}">
         {%- else -%}
