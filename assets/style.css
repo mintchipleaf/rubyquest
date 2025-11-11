@@ -2,6 +2,15 @@ html {
 	height: 99%;
 }
 body {
+	text-wrap: wrap;
+}
+a {
+	color: red;
+}
+a:visited {
+	color: darkred;
+}
+body {
 	height: 100%;
 	color: white;
 	background-color: black;
@@ -107,7 +116,7 @@ details > div {
 	/* height: 100%; */
 }
 .image {
-	border: solid thin darkgray;
+	border: none;
 }
 .caption {
 	color: red;
@@ -158,6 +167,7 @@ details > div {
 		max-width: 100%;
 		min-width: 100%;
 		justify-content: left;
+		font-size: 1.4em;
 	}
 	.textcontainer-storyboard {
 		max-width: 100%;
